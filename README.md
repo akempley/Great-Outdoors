@@ -6,9 +6,5 @@
 
 \### H3 Secret Squirrel Member
 
-"I feel like a nut"
-
-
-
-
+"I feel like a nut - John Nelson"
 
