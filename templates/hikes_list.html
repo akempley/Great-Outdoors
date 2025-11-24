@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Hikes</title>
+</head>
+<body>
+    <h1>Available Hikes</h1>
+    <ul>
+    {% for id, hike in hikes.items() %}
+        <li>
+            <a href="{{ url_for('hike_detail', hike_id=id) }}">
+                {{ hike.name }} (Difficulty: {{ hike.difficulty }})
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('index') }}">Back to Users</a></p>
+</body>
+</html>

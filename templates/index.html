@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the Great Outdoors!</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/toplevel.css') }}">
+    <script src="{{ url_for('static', filename='scripts/myscripts.js') }}"></script>
+</head>
+
+<body>
+
+    <h1>Welcome to the Great Outdoors!</h1>
+
+    <img src="{{ url_for('static', filename='images/outdoors.jpg') }}" alt="Great Outdoors" onmouseover="showAlt(this)" onmouseout="hideAlt(this)">
+    <figcaption>Your Adventure Awaits!</figcaption>
+
+    <p id="alttext" style="font-size:50px"></p>
+
+    <ul>
+        <li><a href="mountain.html">Climb the Mountain</a></li>
+        <li><a href="forest.html">Wander the Forest</a></li>
+        <li><a href="falls.html">See the Falls</a></li>
+        <li><a href="ferry.html">Ride the Ferry</a></li>
+        <li><a href="lake.html">Walk Around the Lake</a></li>
+        <li><a href="park.html">Read in the Park</a></li>
+         <li><a href="{{ url_for('hikes_list') }}">View All Hikes</a></li>
+    </ul>
+
+    <!-- Add User Link -->
+    <p>
+        <a href="{{ url_for('add_user') }}">Add New User</a>
+    </p>
+
+    <!-- Optional: Display current users -->
+    <h2>Current Users</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.name }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
+
