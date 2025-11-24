@@ -10,6 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize the database with the app
 db.init_app(app)
 
+<<<<<<< HEAD
 # === HIKE DATA ===
 hikes = {
     'base-towers': {
@@ -80,10 +81,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize the database with the app
 db.init_app(app)
 
+=======
+>>>>>>> dfbe10ade20959108e696c6d0b8e9073459f74b2
 # Create the database tables
 with app.app_context():
     db.create_all()
 
+<<<<<<< HEAD
 # === HIKE DATA ===
 hikes = {
     'base-towers': {
@@ -104,6 +108,8 @@ hikes = {
 }
 # =================
 
+=======
+>>>>>>> dfbe10ade20959108e696c6d0b8e9073459f74b2
 @app.route('/')
 def index():
     users = User.query.all()
@@ -119,6 +125,7 @@ def add_user():
         return redirect(url_for('index'))
     return render_template('add_user.html')
 
+<<<<<<< HEAD
 @app.route('/hikes')
 def hikes_list():
     """Page showing all hikes"""
@@ -135,3 +142,8 @@ def hike_detail(hike_id):
 if __name__ == '__main__':
     app.run(debug=True)
     
+=======
+if __name__ == '__main__':
+    app.run(debug=True)
+
+>>>>>>> dfbe10ade20959108e696c6d0b8e9073459f74b2
