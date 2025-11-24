@@ -1,0 +1,112 @@
+# Team Charter
+
+## Project Overview
+*Based on client interview conducted on [Date]*
+
+### Client Requirements
+- [Summary of requirements gathered from instructor interview]
+- [Key objectives and expectations]
+- [Project scope and deliverables]
+
+## Team Information
+
+### Team Members
+| Name | Role | Contact Information |
+|------|------|---------------------|
+| [Name] | [Primary Role] | [Email/Phone] |
+| [Name] | [Primary Role] | [Email/Phone] |
+| [Name] | [Primary Role] | [Email/Phone] |
+| [Name] | [Primary Role] | [Email/Phone] |
+
+### Roles and Responsibilities
+- **Project Manager**: Coordinates tasks, tracks progress, main client contact
+- **Development Lead**: Oversees technical implementation, code quality
+- **Documentation Specialist**: Manages documentation, README files, reporting
+- **Quality Assurance**: Testing, validation, quality control
+- **Additional roles as needed**: [Specify other roles]
+
+## Goals and Objectives
+
+### Primary Goals
+1. [Goal 1 from client requirements]
+2. [Goal 2 from client requirements]
+3. [Goal 3 from client requirements]
+
+### Success Criteria
+- [Measurable outcome 1]
+- [Measurable outcome 2]
+- [Client satisfaction indicators]
+
+## Communication Protocol
+
+### Meeting Schedule
+- **Regular Team Meetings**: [Day(s) and time]
+- **Client Check-ins**: [Frequency and schedule]
+- **Emergency Meetings**: [Protocol for urgent issues]
+
+### Communication Channels
+- **GitHub**: Code collaboration, issue tracking, project management
+- **Instant Messaging**: [Tool e.g., Slack/Discord] for daily communication
+- **Email**: Formal communications and client updates
+- **Video Conferencing**: [Tool e.g., Zoom/Teams] for meetings
+
+### Response Time Expectations
+- Urgent issues: [Timeframe]
+- Regular communications: [Timeframe]
+- Code reviews: [Timeframe]
+
+## Project Timeline
+
+### Key Milestones
+| Date | Milestone | Deliverables |
+|------|-----------|--------------|
+| [Date] | [Milestone 1] | [Deliverable details] |
+| [Date] | [Milestone 2] | [Deliverable details] |
+| [Date] | [Milestone 3] | [Deliverable details] |
+| [Final Date] | Project Completion | [Final deliverables] |
+
+## GitHub Workflow
+
+### Repository Management
+- Main branch protection rules
+- Feature branch naming convention: `feature/description` or `fix/description`
+- Pull request review process
+- Commit message standards
+
+### Collaboration Guidelines
+- Code review requirements before merging
+- Issue creation and assignment process
+- Documentation standards
+- Testing protocols
+
+## Conflict Resolution
+
+### Problem Escalation Process
+1. Direct communication between team members
+2. Team discussion with project manager
+3. Instructor consultation if unresolved
+
+### Decision Making
+- Consensus for major decisions
+- Project manager final call when needed
+- Client approval for scope changes
+
+## Risk Management
+
+### Potential Risks
+- [Risk 1 and mitigation strategy]
+- [Risk 2 and mitigation strategy]
+- [Risk 3 and mitigation strategy]
+
+## Agreement
+
+All team members acknowledge and agree to this charter:
+
+**Signatures:**
+- [Team Member 1 Name & Date]
+- [Team Member 2 Name & Date]
+- [Team Member 3 Name & Date]
+- [Team Member 4 Name & Date]
+
+---
+*Last updated: [Date]*

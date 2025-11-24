@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Flask instance folder
+instance/
+
+# Pytest
+.pytest_cache/
+
+# Visual Studio Code workspace (keep .vscode if you want to commit settings)
+# .vscode/
+
+# OS files
+Thumbs.db
+Desktop.ini
