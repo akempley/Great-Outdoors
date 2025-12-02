@@ -1,42 +1,421 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to the Great Outdoors!</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/toplevel.css') }}">
-    <script src="{{ url_for('static', filename='scripts/myscripts.js') }}"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background: #fff3e1;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff3e1;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar nav a {
+  margin: 0 12px;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 6px 14px;
+  background: #4c5cff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  height: 300px;
+  background-image: url('/static/images/MtTahomaPanoramic.jpg');
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.primary-btn {
+  padding: 8px 18px;
+  margin-top: 10px;
+  background: #4c5cff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* POPULAR TRIPS */
+.popular {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.trip-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.trip-card {
+  width: 260px;
+}
+
+.placeholder1 {
+  width: 100%;
+  height: 180px;
+  background-image: url('/static/images/MtTahoma_Stock.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;
+}
+
+.placeholder2 {
+  width: 100%;
+  height: 180px;
+  background-image: url('/static/images/MtBaker.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;
+}
+
+.placeholder3 {
+  width: 100%;
+  height: 180px;
+  background-image: url('/static/images/OlympicForest.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;
+}
+
+/* BANNER */
+.banner {
+  height: 260px;
+  background-image: url('/static/images/cheesygroup.jpg');
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+
+/* NEWSLETTER + FEATURES */
+.newsletter-section,
+.features {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+  gap: 40px;
+}
+
+.newsletter-text,
+.features div {
+  max-width: 450px;
+}
+
+.placeholder4 {
+  width: 280px;
+  height: 280px;
+  background-image: url('/static/images/newsletter.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;/
+  background-size: 100%;
+  align-items: right;
+}
+
+.placeholder5 {
+  width: 100%;
+  height: 240px;
+  background-image: url('/static/images/gadget1.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;/
+  background-size: 100%;
+  align-items: right;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  
+}
+
+.review {
+  max-width: 250px;
+}
+
+.stars {
+  color: gold;
+  margin: 5px 0;
+}
+
+/* BLOG */
+.blog {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.blog-grid {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 40px;
+}
+
+.blog-card {
+  width: 260px;
+}
+
+.placeholder6 {
+  width: 100%;
+  height: 150px;
+  background-image: url('/static/images/foraging.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;/
+  background-size: 100%;
+  align-items: right;
+}
+
+.placeholder7 {
+  width: 100%;
+  height: 150px;
+  background-image: url('/static/images/Camping.jpg');
+  background-size: 100%;
+  border: 1px solid #ccc;/
+  background-size: 100%;
+  align-items: right;
+}
+
+/* FOOTER NEWSLETTER */
+.footer-newsletter {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.footer-newsletter input {
+  padding: 8px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+/* FOOTER */
+.footer {
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+}
+
+.footer-links a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .trip-grid,
+  .testimonial-grid,
+  .blog-grid,
+  .newsletter-section,
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar nav {
+    display: none;
+  }
+}
+
+/* Soft black for all paragraph / subtext */
+p,
+.review p,
+.trip-card p,
+.blog-card p,
+.newsletter-text p,
+.features p,
+.footer-newsletter p {
+  color: #1e1e1e; /* soft charcoal black */
+}
+
+</style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><b>The Great Outdoors</b></title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <h1>Welcome to the Great Outdoors!</h1>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo"><b>The Great Outdoors</b></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Destinations</a>
+      <a href="#">Hiking Essentials</a>
+      <a href="#">Foraging</a>
+      <a href="#">Fauna</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="nav-buttons">
+      <button class="login">Log in</button>
+      <button class="signup">Sign up</button>
+    </div>
+  </header>
 
-    <img src="{{ url_for('static', filename='images/outdoors.jpg') }}" alt="Great Outdoors" onmouseover="showAlt(this)" onmouseout="hideAlt(this)">
-    <figcaption>Your Adventure Awaits!</figcaption>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Let’s get out and hike!</h2>
+      <button class="primary-btn">Plan Your Trip</button>
+    </div>
+  </section>
 
-    <p id="alttext" style="font-size:50px"></p>
+  <!-- POPULAR TRIPS -->
+  <section class="popular">
+    <h2>Our Popular Trips</h2>
 
-    <ul>
-        <li><a href="mountain.html">Climb the Mountain</a></li>
-        <li><a href="forest.html">Wander the Forest</a></li>
-        <li><a href="falls.html">See the Falls</a></li>
-        <li><a href="ferry.html">Ride the Ferry</a></li>
-        <li><a href="lake.html">Walk Around the Lake</a></li>
-        <li><a href="park.html">Read in the Park</a></li>
-    </ul>
+    <div class="trip-grid">
+      <div class="trip-card">
+        <div class="placeholder1"></div>
+        <h3>Mount Tahoma</h3>
+        <p>Washington’s Southwest Volcano</p>
+      </div>
 
-    <!-- Add User Link -->
-    <p>
-        <a href="{{ url_for('add_user') }}">Add New User</a>
-    </p>
+      <div class="trip-card">
+        <div class="placeholder2"></div>
+        <h3>Mount Baker</h3>
+        <p>The Sacred Bedrock of the Nooksack</p>
+      </div>
 
-    <!-- Optional: Display current users -->
-    <h2>Current Users</h2>
-    <ul>
-        {% for user in users %}
-            <li>{{ user.name }}</li>
-        {% endfor %}
-    </ul>
+      <div class="trip-card">
+        <div class="placeholder3"></div>
+        <h3>Olympic Rainforest</h3>
+        <p>The Enchanted Greenwoods</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIKING BANNER -->
+  <section class="banner">
+    <h2></h2>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="placeholder4"></div>
+     <div class="newsletter-text">
+      <h2>Newsletter</h2>
+      <p>Stay in loop with us. Sign up to our newsletter and receive the freshest info.</p>
+      <button class="primary-btn">Sign Up</button>
+    </div>
+  </section>
+
+  <!-- ENHANCED FEATURES -->
+  <section class="features">
+   <div class="placeholder5"></div>
+    <div>
+      <h2>Enhanced Features</h2>
+      <p>
+        Plan your trip with ease! Our integrated real-time weather maps, ferry schedules,
+        and extensive guides make your trip planning a breeze.
+      </p>
+      <button class="primary-btn">Preview</button>
+    </div>
+    <div class="placeholder large"></div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2>Testimonials</h2>
+    <p style="color:MediumSeaGreen;">People love us!</p>
+
+    <div class="testimonial-grid">
+      <div class="review">
+        <p>“This site brings so much value! LOVE it!”</p>
+        <div class="stars">★★★★★</div>
+        <span>Rachel McAdams</span>
+      </div>
+
+      <div class="review">
+        <p>“The real-time maps are an AMAZING feature!”</p>
+        <div class="stars">★★★★★</div>
+        <span>Mia Goth</span>
+      </div>
+
+      <div class="review">
+        <p>“Love sharing this site with friends! Planning is a breeze.”</p>
+        <div class="stars">★★★★★</div>
+        <span>Joe Jonas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog">
+    <h2>Blog</h2>
+
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="placeholder6"></div>
+        <h3>Foraging in style and company</h3>
+        <p>A mini guide for your foraging friends.</p>
+      </div>
+
+      <div class="blog-card">
+        <div class="placeholder7"></div>
+        <h3>How to set up a base camp</h3>
+        <p>A look into shelter options and setting up the best site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER NEWSLETTER -->
+  <section class="footer-newsletter">
+    <h2>Newsletter</h2>
+    <input type="text" placeholder="Email">
+    <button class="primary-btn">Join</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <select>
+      <option>Dropdown</option>
+      <option>Dropdown#2</option>
+      <option>Dropdown#3</option>
+      <option>Dropdown#4</option>
+    </select>
+  </footer>
 
 </body>
 </html>
+
 
