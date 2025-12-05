@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Outdoors - Destinations</title>
+    
+    <style>
+        /* --- 1. BASE & COLORS --- */
+        :root {
+            --primary-bg: #fff3e1; /* The light cream/peach background */
+            --accent-blue: #4c5cff; /* The primary button blue */
+            --charcoal: #1e1e1e; /* Soft black text */
+            --white: #ffffff;
+            --gray-light: #e0e0e0;
+            --border-color: #d1d5db; /* Equivalent to gray-300 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--charcoal);
+            min-height: 100vh;
+        }
+
+        /* --- 2. COMPONENTS --- */
+        .primary-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 0.375rem; /* rounded-md */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 150ms ease;
+        }
+        .primary-btn:hover {
+            background-color: #3b48e3; /* Darker blue for hover */
+        }
+        
+        .img-placeholder {
+            background-color: var(--gray-light);
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            width: 100%;
+            height: 10rem; /* h-40 */
+        }
+
+        /* Specific placeholders */
+        .placeholder-mt-tahoma { background-image: url('https://placehold.co/400x250/b0c4de/333?text=Mt+Tahoma'); }
+        .placeholder-mt-baker { background-image: url('https://placehold.co/400x250/a9a9a9/333?text=Mt+Baker'); }
+        .placeholder-olympic { background-image: url('https://placehold.co/400x250/90ee90/333?text=Olympic+Forest'); }
+        .placeholder-firetower { background-image: url('https://placehold.co/400x250/ffa07a/333?text=Firetower+Lookout'); }
+        .placeholder-weather-map { 
+            background-image: url('https://placehold.co/800x400/add8e6/333?text=Weather+Map+API+Integration'); 
+            height: 20rem; /* h-80 */
+        }
+        .placeholder-ferry { background-image: url('https://placehold.co/800x200/4682b4/fff?text=Ferry+Schedule+Banner'); }
+        .placeholder-video { 
+            background-image: url('https://placehold.co/800x450/333333/fff?text=Inspirational+Video+Placeholder');
+            height: 100%;
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .shadow-xl:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .stars {
+            color: gold;
+            font-size: 0.875rem; /* text-sm */
+        }
+
+        /* --- 3. LAYOUT & CONTAINERS --- */
+        .container {
+            max-width: 1280px; /* Equivalent to a large container */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        /* --- 4. NAVBAR & FOOTER --- */
+        .navbar, .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1rem;
+            border-color: var(--border-color);
+            background-color: var(--primary-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .navbar nav {
+            display: none; /* Hidden by default (mobile first) */
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .navbar nav a {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: color 150ms ease;
+        }
+        .navbar nav a:hover {
+            color: var(--accent-blue);
+        }
+        .navbar nav .active-link {
+            font-weight: bold;
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 0.25rem;
+        }
+        .navbar .nav-buttons button {
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            border-radius: 0.375rem;
+            transition: background-color 150ms ease;
+        }
+        .navbar .nav-buttons .login {
+            background-color: transparent;
+            border: 1px solid #9ca3af; /* gray-400 */
+            color: var(--charcoal);
+        }
+        .navbar .nav-buttons .login:hover {
+            background-color: #f3f4f6; /* gray-100 */
+        }
+        .navbar .nav-buttons .signup {
+            background-color: var(--accent-blue);
+            color: var(--white);
+            border: none;
+        }
+        .navbar .nav-buttons .signup:hover {
+            background-color: #3b48e3;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-color);
+            border-bottom: none;
+            flex-direction: column;
+            text-align: center;
+        }
+        .footer .link-group {
+            display: flex;
+            gap: 1rem;
+        }
+        .footer a {
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: color 150ms ease;
+        }
+        .footer a:hover {
+            color: var(--accent-blue);
+        }
+        .footer select {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background-color: var(--white);
+            margin-top: 1rem;
+        }
+        
+        /* --- 5. GRID & LAYOUT SECTIONS --- */
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+        }
+
+        /* POPULAR TRIPS Grid (Section 1) */
+        .trip-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* Default: 1 column */
+            gap: 2rem;
+        }
+        .trip-card {
+            background-color: var(--white);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            transition: box-shadow 300ms ease;
+        }
+        .trip-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl:hover */
+        }
+        .trip-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+        .trip-card p {
+            font-size: 0.875rem;
+            color: #4b5563; /* gray-600 */
+        }
+
+        /* WEATHER BLOCK (Section 2) */
+        .weather-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default: 1 column */
+            gap: 2rem;
+            align-items: stretch;
+        }
+        .weather-info-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .weather-info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        .weather-visual {
+            background-color: var(--primary-bg);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border-color);
+            margin-top: 1rem;
+        }
+        .weather-visual .temp {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        /* MORE TRAILS (Section 3) */
+        .trail-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default: 1 column */
+            gap: 1rem;
+        }
+        .trail-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--white);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* shadow-md */
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: all 300ms ease;
+        }
+        .trail-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            border-color: var(--accent-blue);
+        }
+        .trail-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--primary-bg);
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--accent-blue);
+        }
+        .trail-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .trail-card p {
+            font-size: 0.875rem;
+            color: #4b5563; /* gray-600 */
+        }
+        
+        /* FERRY BANNER (Section 4) */
+        .ferry-banner {
+            background-color: #4682b4; /* Placeholder background blue */
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        .ferry-banner h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .ferry-banner p {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .ferry-banner button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--white);
+            color: var(--accent-blue);
+            font-weight: 600;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            transition: background-color 150ms ease;
+        }
+        .ferry-banner button:hover {
+            background-color: #f3f4f6; /* gray-100 */
+        }
+
+        /* VIDEO SECTION (Section 5) */
+        .video-container {
+            position: relative;
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+            overflow: hidden;
+            background-color: black;
+            /* Aspect-video: 16/9 aspect ratio */
+            width: 100%;
+            padding-top: 56.25%; /* 9/16 * 100 */
+        }
+        .video-container .img-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+        }
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        .play-button {
+            width: 6rem;
+            height: 6rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            cursor: pointer;
+            transition: all 300ms ease;
+        }
+        .play-button:hover {
+            background-color: var(--white);
+            transform: scale(1.05);
+        }
+        .play-button svg {
+            height: 2.5rem;
+            width: 2.5rem;
+            margin-left: 0.25rem;
+        }
+
+        /* --- 6. RESPONSIVENESS (Media Queries) --- */
+
+        /* Small screens (sm: or 640px and up) */
+        @media (min-width: 640px) {
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            .navbar {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+            }
+            .trip-grid {
+                grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
+            }
+            .trail-grid {
+                grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
+            }
+            .ferry-banner {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+            }
+            .ferry-banner button {
+                margin-top: 0;
+            }
+            .footer {
+                flex-direction: row;
+                text-align: left;
+            }
+            .footer select {
+                margin-top: 0;
+            }
+        }
+
+        /* Medium screens (md: or 768px and up) */
+        @media (min-width: 768px) {
+            .navbar nav {
+                display: flex; /* md:flex */
+                gap: 1rem;
+            }
+        }
+
+        /* Large screens (lg: or 1024px and up) */
+        @media (min-width: 1024px) {
+            .trip-grid {
+                grid-template-columns: repeat(4, 1fr); /* lg:grid-cols-4 */
+            }
+            .weather-grid {
+                grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+            }
+            .weather-info-card {
+                grid-column: span 1 / span 1; /* lg:col-span-1 */
+            }
+            .weather-map-placeholder {
+                grid-column: span 2 / span 2; /* lg:col-span-2 */
+            }
+            .placeholder-weather-map {
+                height: 100%; /* lg:h-full */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo"><b>The Great Outdoors</b></div>
+        <nav>
+            <a href="/index">Home</a>
+            <a href="#" class="active-link">Destinations</a>
+            <a href="#">Hiking Essentials</a>
+            <a href="#">Foraging</a>
+            <a href="#">Fauna</a>
+            <a href="#">Blog</a>
+        </nav>
+        <div class="nav-buttons">
+            <button class="login">Log in</button>
+            <button class="signup">Sign up</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Main Title Section -->
+        <div class="text-center mb-12" style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="font-size: 2.25rem; line-height: 2.5rem; font-weight: 800; color: var(--charcoal); margin-bottom: 0.5rem;" class="sm:text-5xl">Explore the PNW</h1>
+            <p style="font-size: 1.125rem; color: #4b5563;">Handpicked trails, current conditions, and essential planning tools.</p>
+        </div>
+
+        <!-- 1. POPULAR TRIPS -->
+        <section style="margin-bottom: 4rem;">
+            <h2 class="section-title">Popular Trips</h2>
+            
+            <div class="trip-grid">
+                
+                <!-- Card 1: Mt Tahoma -->
+                <div class="trip-card">
+                    <div class="img-placeholder placeholder-mt-tahoma"></div>
+                    <h3>Mt Tahoma</h3>
+                    <p>The Lovely Mountain of The Pray</p>
+                    <div class="stars" style="margin-top: 0.25rem;">★★★★☆ (Dificulty)</div>
+                </div>
+
+                <!-- Card 2: Mt Baker -->
+                <div class="trip-card">
+                    <div class="img-placeholder placeholder-mt-baker"></div>
+                    <h3>Mt Baker</h3>
+                    <p>The Sacred Mountain of The North</p>
+                    <div class="stars" style="margin-top: 0.25rem;">★★★★★ (Dificulty)</div>
+                </div>
+
+                <!-- Card 3: Olympic Forest -->
+                <div class="trip-card">
+                    <div class="img-placeholder placeholder-olympic"></div>
+                    <h3>Olympic Forest</h3>
+                    <p>Enchanted Greenwoods</p>
+                    <div class="stars" style="margin-top: 0.25rem;">★★☆☆☆ (Dificulty)</div>
+                </div>
+
+                <!-- Card 4: Firetower Lookout -->
+                <div class="trip-card">
+                    <div class="img-placeholder placeholder-firetower"></div>
+                    <h3>Firetower Lookout</h3>
+                    <p>Stunning Autumn Views</p>
+                    <div class="stars" style="margin-top: 0.25rem;">★★★★☆ (Dificulty)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CURRENT WEATHER / WEATHER API BLOCK -->
+        <section style="margin-bottom: 4rem;">
+            <h2 class="section-title">Current Conditions & Planning</h2>
+            
+            <div class="weather-grid">
+                <!-- Left Column: Weather Info Card -->
+                <div class="weather-info-card">
+                    <div>
+                        <h3>Current Weather</h3>
+                        <p style="font-size: 1.125rem; font-weight: 500;">Weather Conditions</p>
+                        <p style="font-size: 0.875rem; color: #4b5563; margin-top: 0.25rem;">Live updates and radar of the PNW.</p>
+                        <!-- Mock data visualization area -->
+                        <div class="weather-visual">
+                            <p style="font-size: 0.875rem; font-weight: bold;">Rainier Summit:</p>
+                            <p class="temp">34°F / Snow</p>
+                            <p style="font-size: 0.75rem; color: #6b7280;">Last updated: 5 mins ago</p>
+                        </div>
+                    </div>
+                    <button class="primary-btn" style="margin-top: 1.5rem; width: 100%; padding: 0.5rem 0;">Detailed Weather Map</button>
+                </div>
+                
+                <!-- Right Column: Weather Map Placeholder -->
+                <div class="weather-info-card weather-map-placeholder" style="padding: 1rem;">
+                    <div class="img-placeholder placeholder-weather-map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MORE TRAILS (List/Grid) -->
+        <section style="margin-bottom: 4rem;">
+            <h2 class="section-title">More Trails</h2>
+            
+            <div class="trail-grid">
+                
+                <!-- Trail Card Component (Repeated) -->
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">🌲</div>
+                    <div>
+                        <h3>Mailbox Peak</h3>
+                        <p>Challenging Hike with Epic Views</p>
+                    </div>
+                </a>
+
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">🏞️</div>
+                    <div>
+                        <h3>Lake 22</h3>
+                        <p>A Fantastic Alpine Lake</p>
+                    </div>
+                </a>
+
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">⛺</div>
+                    <div>
+                        <h3>Wondertrail</h3>
+                        <p>A Multi-day Hiking Route</p>
+                    </div>
+                </a>
+
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">🏔️</div>
+                    <div>
+                        <h3>Silver Star Mountain</h3>
+                        <p>Panoramic Views for Miles</p>
+                    </div>
+                </a>
+
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">❄️</div>
+                    <div>
+                        <h3>Mt Saint Helens</h3>
+                        <p>An Icy Wonderland</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">💧</div>
+                    <div>
+                        <h3>Lake Colchuck</h3>
+                        <p>A Massive Alpine Lake Hike</p>
+                    </div>
+                </a>
+
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">🐍</div>
+                    <div>
+                        <h3>Rattlesnake Ridge</h3>
+                        <p>Well-Known Hike for Everyone</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="trail-card">
+                    <div class="trail-icon">🌾</div>
+                    <div>
+                        <h3>Deception Pass</h3>
+                        <p>Views of the Pacific Coast</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 4. CATCHING A FERRY? (CTA/Banner) -->
+        <section style="margin-bottom: 4rem;">
+            <div class="ferry-banner">
+                <div>
+                    <h3>Catching a Ferry?</h3>
+                    <p>Check fares, schedules, and alerts for your destination.</p>
+                </div>
+                <button>View Schedules</button>
+            </div>
+        </section>
+
+        <!-- 5. VIDEO SECTION -->
+        <section style="margin-bottom: 4rem;">
+            <h2 class="section-title">Your Next Adventure Awaits</h2>
+            <div class="video-container">
+                <div class="img-placeholder placeholder-video"></div>
+                <!-- Play Button Overlay -->
+                <div class="video-overlay">
+                    <button class="play-button">
+                        <!-- Play Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="link-group">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <select>
+            <option>Dropdown</option>
+            <option>Dropdown#2</option>
+            <option>Dropdown#3</option>
+            <option>Dropdown#4</option>
+        </select>
+    </footer>
+</body>
+</html>
