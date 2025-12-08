@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Great Outdoors</title>
-    
+
     <style>
         /* --- 1. BASE & COLORS --- */
         :root {
-            --primary-bg: #fff3e1; /* The light cream/peach background */
-            --accent-blue: #4c5cff; /* The primary button blue */
-            --charcoal: #1e1e1e; /* Soft black text */
+            --primary-bg: #fff3e1;
+            /* The light cream/peach background */
+            --accent-blue: #4c5cff;
+            /* The primary button blue */
+            --charcoal: #1e1e1e;
+            /* Soft black text */
             --white: #ffffff;
             --gray-light: #e0e0e0;
-            --border-color: #d1d5db; /* Equivalent to gray-300 */
+            --border-color: #d1d5db;
+            /* Equivalent to gray-300 */
         }
 
         * {
@@ -28,22 +33,24 @@
             color: var(--charcoal);
             min-height: 10vh;
         }
-        
+
         /* --- 2. COMPONENTS & TYPOGRAPHY --- */
         .primary-btn {
-            padding: 0.75rem 1.5rem; 
+            padding: 0.75rem 1.5rem;
             background-color: var(--accent-blue);
             color: var(--white);
             border: none;
-            border-radius: 0.375rem; /* rounded-md */
+            border-radius: 0.375rem;
+            /* rounded-md */
             font-weight: 600;
             cursor: pointer;
             transition: background-color 150ms ease, box-shadow 150ms ease;
-            text-decoration: none; 
+            text-decoration: none;
             display: inline-block;
         }
+
         .primary-btn:hover {
-            background-color: #3b48e3; 
+            background-color: #3b48e3;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
 
@@ -63,41 +70,90 @@
         }
 
         /* LOCAL IMAGE PATHS (PRESERVED) */
-        .hero-img { height: 25rem; border: none; background-image: url('/static/images/MtTahomaPanoramic.jpg'); border-radius: 0.75rem; }
-        .placeholder-trip1 { height: 12rem; background-image: url('/static/images/MtTahoma_Stock.jpg'); }
-        .placeholder-trip2 { height: 12rem; background-image: url('/static/images/MtBaker.jpg'); }
-        .placeholder-trip3 { height: 12rem; background-image: url('/static/images/OlympicForest.jpg'); }
-        .placeholder-newsletter { background-image: url('/static/images/newsletter.jpg'); width: 280px; height: 280px; border-radius: 0.75rem;}
-        .placeholder-feature { background-image: url('/static/images/gadget1.jpg'); width: 100%; height: 200px; border-radius: 0.75rem;}
-        .placeholder-blog1 { height: 10rem; background-image: url('/static/images/foraging.jpg'); }
-        .placeholder-blog2 { height: 10rem; background-image: url('/static/images/Camping.jpg'); }
-        .banner-img { background-image: url('/static/images/cheesygroup.jpg'); height: 100%; border: none; border-radius: 0.75rem;}
-        
+        .hero-img {
+            height: 25rem;
+            border: none;
+            background-image: url('/static/images/MtTahomaPanoramic.jpg');
+            border-radius: 0.75rem;
+        }
+
+        .placeholder-trip1 {
+            height: 12rem;
+            background-image: url('/static/images/MtTahoma_Stock.jpg');
+        }
+
+        .placeholder-trip2 {
+            height: 12rem;
+            background-image: url('/static/images/MtBaker.jpg');
+        }
+
+        .placeholder-trip3 {
+            height: 12rem;
+            background-image: url('/static/images/OlympicForest.jpg');
+        }
+
+        .placeholder-newsletter {
+            background-image: url('/static/images/newsletter.jpg');
+            width: 280px;
+            height: 280px;
+            border-radius: 0.75rem;
+        }
+
+        .placeholder-feature {
+            background-image: url('/static/images/gadget1.jpg');
+            width: 100%;
+            height: 200px;
+            border-radius: 0.75rem;
+        }
+
+        .placeholder-blog1 {
+            height: 10rem;
+            background-image: url('/static/images/foraging.jpg');
+        }
+
+        .placeholder-blog2 {
+            height: 10rem;
+            background-image: url('/static/images/Camping.jpg');
+        }
+
+        .banner-img {
+            background-image: url('/static/images/cheesygroup.jpg');
+            height: 100%;
+            border: none;
+            border-radius: 0.75rem;
+        }
+
         .shadow-lg {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+
         .shadow-md {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
 
         .stars {
             color: gold;
-            font-size: 0.875rem; /* text-sm */
+            font-size: 0.875rem;
+            /* text-sm */
         }
+
         .section-title {
-            font-size: 1.875rem; /* text-3xl */
+            font-size: 1.875rem;
+            /* text-3xl */
             font-weight: bold;
             text-align: center;
             margin-bottom: 2rem;
             color: var(--charcoal);
         }
+
         .section-subtitle {
-             font-size: 1.125rem;
-             color: #4b5563; /* gray-600 */
-             margin-top: -1.5rem;
-             margin-bottom: 3rem;
+            font-size: 1.125rem;
+            color: #4b5563;
+            /* gray-600 */
+            margin-top: -1.5rem;
+            margin-bottom: 3rem;
         }
-        
+
         /* --- 3. LAYOUT & CONTAINERS --- */
         .container {
             max-width: 1280px;
@@ -119,47 +175,57 @@
             background-color: var(--primary-bg);
             border-bottom: 1px solid var(--border-color);
         }
+
         .navbar .logo {
             font-size: 1.25rem;
             font-weight: bold;
         }
+
         .navbar nav {
-            display: none; 
+            display: none;
             gap: 1rem;
         }
+
         .navbar nav a {
             text-decoration: none;
             color: var(--charcoal);
             transition: color 150ms ease;
         }
+
         .navbar nav a:hover {
             color: var(--accent-blue);
         }
+
         .navbar nav .active-link {
             font-weight: bold;
             color: var(--accent-blue);
             border-bottom: 2px solid var(--accent-blue);
             padding-bottom: 0.25rem;
         }
+
         .navbar .nav-buttons button {
             padding: 0.25rem 0.75rem;
             font-size: 0.875rem;
             border-radius: 0.375rem;
             transition: background-color 150ms ease;
         }
+
         .navbar .nav-buttons .login {
             background-color: transparent;
-            border: 1px solid #9ca3af; 
+            border: 1px solid #9ca3af;
             color: var(--charcoal);
         }
+
         .navbar .nav-buttons .login:hover {
-            background-color: #f3f4f6; 
+            background-color: #f3f4f6;
         }
+
         .navbar .nav-buttons .signup {
             background-color: var(--accent-blue);
             color: var(--white);
             border: none;
         }
+
         .navbar .nav-buttons .signup:hover {
             background-color: #3b48e3;
         }
@@ -173,15 +239,18 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .footer .footer-links a {
             margin: 0 0.5rem;
             text-decoration: none;
             color: var(--charcoal);
             transition: color 150ms ease;
         }
+
         .footer a:hover {
             color: var(--accent-blue);
         }
+
         .footer select {
             padding: 0.5rem;
             border: 1px solid var(--border-color);
@@ -189,12 +258,12 @@
             background-color: var(--white);
             margin-top: 1rem;
         }
-        
+
         /* --- 5. SECTION STYLES --- */
         section {
             padding: 2rem 0;
         }
-        
+
         /* HERO SECTION */
         .hero {
             display: flex;
@@ -204,11 +273,13 @@
             padding: 0;
             margin-bottom: 4rem;
         }
+
         .hero-content {
             padding: 2rem 1rem;
             color: var(--white);
             z-index: 10;
         }
+
         .hero h2 {
             font-size: 2.5rem;
             line-height: 1.1;
@@ -216,15 +287,19 @@
             color: var(--charcoal);
             margin-bottom: 1rem;
         }
-        
+
         /* POPULAR TRIPS & BLOG GRIDS */
-        .trip-grid, .blog-grid, .testimonial-grid {
+        .trip-grid,
+        .blog-grid,
+        .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr); 
+            grid-template-columns: repeat(1, 1fr);
             gap: 2rem;
             margin-top: 2rem;
         }
-        .trip-card, .blog-card {
+
+        .trip-card,
+        .blog-card {
             background-color: var(--white);
             padding: 1rem;
             border-radius: 0.75rem;
@@ -232,16 +307,22 @@
             transition: box-shadow 300ms ease;
             text-align: left;
         }
-        .trip-card:hover, .blog-card:hover {
+
+        .trip-card:hover,
+        .blog-card:hover {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        .trip-card h3, .blog-card h3 {
+
+        .trip-card h3,
+        .blog-card h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin-top: 0.75rem;
             margin-bottom: 0.25rem;
         }
-        .trip-card p, .blog-card p {
+
+        .trip-card p,
+        .blog-card p {
             font-size: 0.875rem;
             color: #4b5563;
         }
@@ -251,16 +332,19 @@
             padding: 2rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            background-color: #38b2ac; /* A color for the banner background */
+            background-color: #38b2ac;
+            /* A color for the banner background */
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: var(--white);
-            height: 16rem; /* h-64 */
+            height: 16rem;
+            /* h-64 */
             margin-bottom: 4rem;
             overflow: hidden;
         }
+
         .banner h2 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -268,25 +352,70 @@
         }
 
         /* NEWSLETTER + FEATURES */
-        .newsletter-section, .features {
+        .newsletter-section,
+        .features {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 2rem 0;
             gap: 2rem;
         }
-        .newsletter-text, .features > div {
+
+        .newsletter-text,
+        .features>div {
             max-width: 450px;
-            text-align: center; /* Default mobile alignment: centered */
+            text-align: center;
+            /* mobile default */
         }
-        .newsletter-text h2, .features h2 {
+
+        .newsletter-text h2,
+        .features h2 {
             font-size: 1.75rem;
             font-weight: bold;
             margin-bottom: 0.75rem;
         }
+
+        /* Enhanced Features: image below text on mobile */
         .features {
-            flex-direction: column-reverse; /* Ensure image/placeholder is below text on mobile */
+            flex-direction: column-reverse;
         }
+
+        /* ---------- DESKTOP LAYOUT ---------- */
+        @media (min-width: 640px) {
+
+            /* newsletter: image left, text right */
+            .newsletter-section {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* Enhanced Features: text left, image right */
+            .features {
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .newsletter-section .newsletter-text {
+                text-align: left;
+            }
+
+            .features>div {
+                text-align: right;
+            }
+        }
+
+        /* ---------- FINAL ALIGNMENT TWEAK (WIDE SCREENS ONLY) ---------- */
+        /* move ONLY the newsletter image horizontally so its right edge
+   lines up with the Enhanced Features text block below */
+        @media (min-width: 1024px) {
+            .newsletter-section .placeholder-newsletter {
+                margin-left: 10rem;
+                /* increase/decrease this to nudge image left/right */
+            }
+        }
+
 
         /* TESTIMONIALS */
         .review {
@@ -297,10 +426,12 @@
             border-top: 4px solid var(--accent-blue);
             max-width: none;
         }
+
         .review p {
             font-style: italic;
             margin-bottom: 0.5rem;
         }
+
         .review span {
             font-size: 0.875rem;
             font-weight: 600;
@@ -314,11 +445,13 @@
             background-color: #38b2ac;
             margin-top: 2rem;
         }
+
         .footer-newsletter h2 {
             font-size: 1.875rem;
             font-weight: bold;
             margin-bottom: 1rem;
         }
+
         .footer-newsletter input {
             padding: 0.75rem;
             width: 280px;
@@ -336,201 +469,219 @@
                 padding-top: 3rem;
                 padding-bottom: 3rem;
             }
+
             .footer {
                 flex-direction: row;
                 text-align: left;
             }
+
             .footer select {
                 margin-top: 0;
             }
+
             /* Set row layout for both sections on desktop */
             .newsletter-section {
-                flex-direction: row; /* Image left, Text right */
+                flex-direction: row;
+                /* Image left, Text right */
                 justify-content: space-between;
             }
+
             .features {
-                flex-direction: row-reverse; /* Image right, Text left */
+                flex-direction: row-reverse;
+                /* Image right, Text left */
                 justify-content: space-between;
             }
-            
+
             /* Desktop Alignment Overrides */
             .newsletter-section .newsletter-text {
                 text-align: left;
             }
-            .features > div {
-                text-align: right; 
+
+            .features>div {
+                text-align: right;
             }
-            
+
             .footer-newsletter input {
-                 margin-right: 10px;
-                 margin-bottom: 0;
-		 
+                margin-right: 10px;
+                margin-bottom: 0;
+
             }
         }
 
         @media (min-width: 768px) {
             .navbar nav {
-                display: flex; 
+                display: flex;
             }
+
             .trip-grid {
-                grid-template-columns: repeat(3, 1fr); 
+                grid-template-columns: repeat(3, 1fr);
             }
+
             .blog-grid {
-                grid-template-columns: repeat(2, 1fr); 
+                grid-template-columns: repeat(2, 1fr);
             }
+
             .testimonial-grid {
-                grid-template-columns: repeat(3, 1fr); 
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
 </head>
+
 <body>
-  <!-- NAVBAR -->  
-  <header class="navbar">    
-    <div class="logo"><b>The Great Outdoors</b></div>    
-    <nav>      
-        <a href="#" class="active-link">Home</a>      
-        <a href="/destinations">Destinations</a>      
-        <a href="#">Hiking Essentials</a>      
-        <a href="#">Foraging</a>      
-        <a href="#">Fauna</a>      
-        <a href="#">Blog</a>    
-    </nav>    
-    <div class="nav-buttons">      
-        <button class="login">Log in</button>      
-        <button class="signup">Sign up</button>    
-    </div>  
-  </header>
-  
-  <main class="container">
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo"><b>The Great Outdoors</b></div>
+        <nav>
+            <a href="#" class="active-link">Home</a>
+            <a href="/destinations">Destinations</a>
+            <a href="#">Hiking Essentials</a>
+            <a href="#">Foraging</a>
+            <a href="#">Fauna</a>
+            <a href="#">Blog</a>
+        </nav>
+        <div class="nav-buttons">
+            <button class="login">Log in</button>
+            <button class="signup">Sign up</button>
+        </div>
+    </header>
 
-    <!-- HERO SECTION -->  
-    <section class="hero">    
-        <div class="hero-content">      
-            <h2>Let’s get out and hike!</h2>      
-            <button class="primary-btn" style="margin-top: 1.5rem;">Plan Your Trip</button>    
-        </div>  
-        <div class="img-container hero-img shadow-lg" style="margin-top: 2rem;"></div>
-    </section>
+    <main class="container">
 
-    <!-- POPULAR TRIPS -->  
-    <section class="popular">    
-        <h2 class="section-title">Our Popular Trips</h2>
-        <div class="trip-grid">      
-            <div class="trip-card shadow-md">        
-                <div class="img-container placeholder-trip1"></div>        
-                <h3>Mount Tahoma</h3>        
-                <p>Washington’s Southwest Volcano</p>      
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Let’s get out and hike!</h2>
+
+                <a href="{{ url_for('destinations') }}" class="primary-btn" style="margin-top: 1.5rem;">
+                    Plan Your Trip
+                </a>
             </div>
-            <div class="trip-card shadow-md">        
-                <div class="img-container placeholder-trip2"></div>        
-                <h3>Mount Baker</h3>        
-                <p>The Sacred Bedrock of the Nooksack</p>      
-            </div>
-            <div class="trip-card shadow-md">        
-                <div class="img-container placeholder-trip3"></div>        
-                <h3>Olympic Rainforest</h3>        
-                <p>The Enchanted Greenwoods</p>      
-            </div>    
-        </div>  
-    </section>
 
-    <!-- HIKING BANNER -->  
-    <section class="banner" style="margin-bottom: 4rem;">    
-        <div class="img-container banner-img">
-            <h2>Find Your Crew. Find Your Trail.</h2>
+            <div class="img-container hero-img shadow-lg" style="margin-top: 2rem;"></div>
+        </section>
+
+        <!-- POPULAR TRIPS -->
+        <section class="popular">
+            <h2 class="section-title">Our Popular Trips</h2>
+            <div class="trip-grid">
+                <div class="trip-card shadow-md">
+                    <div class="img-container placeholder-trip1"></div>
+                    <h3>Mount Tahoma</h3>
+                    <p>Washington’s Southwest Volcano</p>
+                </div>
+                <div class="trip-card shadow-md">
+                    <div class="img-container placeholder-trip2"></div>
+                    <h3>Mount Baker</h3>
+                    <p>The Sacred Bedrock of the Nooksack</p>
+                </div>
+                <div class="trip-card shadow-md">
+                    <div class="img-container placeholder-trip3"></div>
+                    <h3>Olympic Rainforest</h3>
+                    <p>The Enchanted Greenwoods</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIKING BANNER -->
+        <section class="banner" style="margin-bottom: 4rem;">
+            <div class="img-container banner-img">
+                <h2>Find Your Crew. Find Your Trail.</h2>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter-section">
+
+            <div class="img-container placeholder-newsletter shadow-md newsletter-image"></div>
+
+            <div class="newsletter-text">
+                <h2>Newsletter</h2>
+                <p>Stay in loop with us. Sign up to our newsletter and receive the freshest info.</p>
+                <button class="primary-btn" style="margin-top: 1rem;">Sign Up</button>
+            </div>
+
+        </section>
+
+        <!-- ENHANCED FEATURES -->
+        <section class="features">
+            <div class="placeholder-feature img-container shadow-md"></div>
+            <!-- Removed inline style from here -->
+            <div>
+                <h2>Enhanced Features</h2>
+                <p>
+                    Plan your trip with ease! Our integrated real-time weather maps, ferry schedules,
+                    and extensive guides make your trip planning a breeze.
+                </p>
+                <button class="primary-btn" style="margin-top: 1rem;">Preview</button>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="testimonials">
+            <h2 class="section-title">Testimonials</h2>
+            <p class="section-subtitle">People love us!</p>
+            <div class="testimonial-grid">
+                <div class="review">
+                    <p>“This site brings so much value! LOVE it!”</p>
+                    <div class="stars">★★★★★</div>
+                    <span>Rachel McAdams</span>
+                </div>
+                <div class="review">
+                    <p>“The real-time maps are an AMAZING feature!”</p>
+                    <div class="stars">★★★★★</div>
+                    <span>Mia Goth</span>
+                </div>
+                <div class="review">
+                    <p>“Love sharing this site with friends! Planning is a breeze.”</p>
+                    <div class="stars">★★★★★</div>
+                    <span>Joe Jonas</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOG -->
+        <section class="blog">
+            <h2 class="section-title">Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card shadow-md">
+                    <div class="img-container placeholder-blog1"></div>
+                    <h3>Foraging in style and company</h3>
+                    <p>A mini guide for your foraging friends.</p>
+                </div>
+                <div class="blog-card shadow-md">
+                    <div class="img-container placeholder-blog2"></div>
+                    <h3>How to set up a base camp</h3>
+                    <p>A look into shelter options and setting up the best site.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER NEWSLETTER -->
+    <section class="footer-newsletter">
+        <h2>Ready to Join the Community?</h2>
+        <div>
+            <input type="text" placeholder="Enter your email address">
+            <button class="primary-btn">Join</button>
         </div>
     </section>
-  
-    <!-- NEWSLETTER -->  
-    <section class="newsletter-section">    
-        <div class="img-container placeholder-newsletter shadow-md"></div>
-        <!-- Removed inline style from here -->
-        <div class="newsletter-text">      
-            <h2>Newsletter</h2>      
-            <p>Stay in loop with us. Sign up to our newsletter and receive the freshest info.</p>      
-            <button class="primary-btn" style="margin-top: 1rem;">Sign Up</button>    
-        </div>  
-    </section>
-  
-    <!-- ENHANCED FEATURES -->  
-    <section class="features">   
-        <div class="placeholder-feature img-container shadow-md"></div>
-        <!-- Removed inline style from here -->
-        <div>      
-            <h2>Enhanced Features</h2>      
-            <p>        
-                Plan your trip with ease! Our integrated real-time weather maps, ferry schedules,        
-                and extensive guides make your trip planning a breeze.      
-            </p>      
-            <button class="primary-btn" style="margin-top: 1rem;">Preview</button>    
-        </div>
-    </section>
-  
-    <!-- TESTIMONIALS -->  
-    <section class="testimonials">    
-        <h2 class="section-title">Testimonials</h2>    
-        <p class="section-subtitle">People love us!</p>
-        <div class="testimonial-grid">      
-            <div class="review">        
-                <p>“This site brings so much value! LOVE it!”</p>        
-                <div class="stars">★★★★★</div>        
-                <span>Rachel McAdams</span>      
-            </div>
-            <div class="review">        
-                <p>“The real-time maps are an AMAZING feature!”</p>        
-                <div class="stars">★★★★★</div>        
-                <span>Mia Goth</span>      
-            </div>
-            <div class="review">        
-                <p>“Love sharing this site with friends! Planning is a breeze.”</p>        
-                <div class="stars">★★★★★</div>        
-                <span>Joe Jonas</span>      
-            </div>    
-        </div>  
-    </section>
-  
-    <!-- BLOG -->  
-    <section class="blog">    
-        <h2 class="section-title">Blog</h2>
-        <div class="blog-grid">      
-            <div class="blog-card shadow-md">        
-                <div class="img-container placeholder-blog1"></div>        
-                <h3>Foraging in style and company</h3>        
-                <p>A mini guide for your foraging friends.</p>      
-            </div>
-            <div class="blog-card shadow-md">        
-                <div class="img-container placeholder-blog2"></div>        
-                <h3>How to set up a base camp</h3>        
-                <p>A look into shelter options and setting up the best site.</p>      
-            </div>    
-        </div>  
-    </section>
 
-  </main>
-  
-  <!-- FOOTER NEWSLETTER -->  
-  <section class="footer-newsletter">    
-      <h2>Ready to Join the Community?</h2>    
-      <div>
-        <input type="text" placeholder="Enter your email address">    
-        <button class="primary-btn">Join</button>  
-      </div>
-  </section>
-  
-  <!-- FOOTER -->  
-  <footer class="footer">    
-    <div class="footer-links">      
-        <a href="{{ url_for('index') }}">Home</a>      
-        <a href="#">About</a>      
-        <a href="#">Contact</a>    
-    </div>
-    <select>      
-        <option>Dropdown</option>      
-        <option>Dropdown#2</option>      
-        <option>Dropdown#3</option>      
-        <option>Dropdown#4</option>    
-    </select>  
-  </footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <select>
+            <option>Dropdown</option>
+            <option>Dropdown#2</option>
+            <option>Dropdown#3</option>
+            <option>Dropdown#4</option>
+        </select>
+    </footer>
 </body>
+
 </html>
