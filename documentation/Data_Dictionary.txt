@@ -1,0 +1,162 @@
+Great Outdoors / Pacific Northwest Experience Website
+
+
+1. `User` (site accounts, members, staff)
+
+| Field Name           | Type     | Description                                               | Example                  |
+| -------------------- | -------- | --------------------------------------------------------- | ------------------------ |
+| `user_id`            | Integer  | Unique ID for each user                                   | `101`                    |
+| `username`           | Text     | Public username / handle                                  | `pnw_hiker_john`         |
+| `email`              | Text     | Login email address                                       | `john@example.com`       |
+| `phone`              | Text     | Optional phone for contact or SMS                         | `+1-206-555-1234`        |
+| `password_hash`      | Text     | Encrypted password (never store plain text)               | `hashed_value`           |
+| `role`               | Text     | User role: `visitor`, `member`, `guide`, `staff`, `admin` | `member`                 |
+| `member_status`      | Text     | Membership tier, e.g. `free`, `plus`, `staff`             | `plus`                   |
+| `profile_name`       | Text     | Display name on profile                                   | `John Nelson`            |
+| `profile_photo_url`  | URL      | Profile image link                                        | `https://.../john.jpg`   |
+| `banner_image_url`   | URL      | Optional banner/header image                              | `https://.../banner.jpg` |
+| `preferred_language` | Text     | UI language code, e.g. `en`, `es`                         | `en`                     |
+| `created_at`         | DateTime | Date/time the account was created                         | `2025-02-10 18:30`       |
+| `last_login_at`      | DateTime | Last time the user logged in                              | `2025-02-20 09:12`       |
+| `is_active`          | Boolean  | Whether the account is active or deleted/deactivated      | `true`                   |
+
+---
+
+2. `Trip` / `Destination` (core content for hikes and adventures)
+
+| Field Name              | Type     | Description                                                | Example                                          |
+| ----------------------- | -------- | ---------------------------------------------------------- | ------------------------------------------------ |
+| `trip_id`               | Integer  | Unique ID for each trip/destination                        | `305`                                            |
+| `title`                 | Text     | Name of the hike or destination                            | `Rattlesnake Ledge`                              |
+| `slug`                  | Text     | URL-friendly ID for the trip                               | `rattlesnake-ledge`                              |
+| `summary`               | Text     | Short teaser / summary sentence                            | `Popular day hike near Seattle with lake views.` |
+| `description`           | Text     | Full trip report and details                               | (paragraphs of text)                             |
+| `region`                | Text     | Area or general location                                   | `North Bend, WA`                                 |
+| `latitude`              | Decimal  | GPS latitude                                               | `47.4345`                                        |
+| `longitude`             | Decimal  | GPS longitude                                              | `-121.7869`                                      |
+| `activity_type`         | Text     | Type: `day_hike`, `backpacking`, `kayaking`, `car_camping` | `day_hike`                                       |
+| `difficulty_rating`     | Integer  | Community difficulty rating (e.g. 1–5)                     | `3`                                              |
+| `distance_miles`        | Decimal  | Approx round-trip distance                                 | `4.0`                                            |
+| `elevation_gain_ft`     | Integer  | Total elevation gain in feet                               | `1100`                                           |
+| `estimated_duration_hr` | Decimal  | Average time to complete                                   | `2.5`                                            |
+| `best_season`           | Text     | Best time of year to go                                    | `Spring–Fall`                                    |
+| `required_passes`       | Text     | Name of required pass/permit                               | `Discover Pass`                                  |
+| `ferry_required`        | Boolean  | Whether a ferry is normally needed                         | `true`                                           |
+| `ferry_route_id`        | Integer  | Optional link to a ferry route (if required)               | `12`                                             |
+| `created_by_user_id`    | Integer  | User who originally posted the trip                        | `101`                                            |
+| `source_type`           | Text     | `staff_post`, `community_post`                             | `community_post`                                 |
+| `status`                | Text     | `draft`, `published`, `archived`                           | `published`                                      |
+| `created_at`            | DateTime | Trip first created                                         | `2025-02-01 10:02`                               |
+| `updated_at`            | DateTime | Last updated                                               | `2025-02-15 09:00`                               |
+
+---
+
+3. `MediaAsset` (photos and videos for trips)
+
+| Field Name       | Type     | Description                                   | Example                                |
+| ---------------- | -------- | --------------------------------------------- | -------------------------------------- |
+| `media_id`       | Integer  | Unique ID for each media item                 | `9001`                                 |
+| `trip_id`        | Integer  | Related trip/destination                      | `305`                                  |
+| `uploaded_by_id` | Integer  | User who uploaded the media                   | `101`                                  |
+| `media_type`     | Text     | `photo` or `video`                            | `photo`                                |
+| `url`            | URL      | Link to the file (CDN, S3, etc.)              | `https://.../rattlesnake1.jpg`         |
+| `caption`        | Text     | Optional caption/description                  | `View from the summit on a clear day.` |
+| `is_featured`    | Boolean  | Whether this is a featured image for the trip | `true`                                 |
+| `uploaded_at`    | DateTime | Date/time uploaded                            | `2025-02-02 11:45`                     |
+
+---
+
+4. `Comment` / `Review` (community interaction on trip pages)
+
+| Field Name   | Type     | Description                                | Example                                   |
+| ------------ | -------- | ------------------------------------------ | ----------------------------------------- |
+| `comment_id` | Integer  | Unique ID for each comment                 | `5007`                                    |
+| `trip_id`    | Integer  | Trip the comment belongs to                | `305`                                     |
+| `user_id`    | Integer  | Author of the comment                      | `102`                                     |
+| `body`       | Text     | Comment text                               | `Trail was muddy but views were amazing.` |
+| `rating`     | Integer  | Optional 1–5 rating for difficulty/overall | `4`                                       |
+| `created_at` | DateTime | When the comment was posted                | `2025-02-05 08:30`                        |
+| `is_flagged` | Boolean  | Marked for review by staff                 | `false`                                   |
+
+---
+
+5. `WeatherSnapshot` (real-time weather view for destination pages)
+
+> Data comes from a weather API (e.g., NOAA); usually read-only and refreshed periodically.
+
+| Field Name           | Type     | Description                              | Example                  |
+| -------------------- | -------- | ---------------------------------------- | ------------------------ |
+| `weather_id`         | Integer  | Unique ID for the snapshot               | `2100`                   |
+| `trip_id`            | Integer  | Related trip/destination                 | `305`                    |
+| `source_name`        | Text     | Weather provider                         | `NOAA`                   |
+| `observed_at`        | DateTime | Time of observation                      | `2025-02-20 09:00`       |
+| `temperature_f`      | Decimal  | Temperature in Fahrenheit                | `52.3`                   |
+| `condition_text`     | Text     | Description of conditions                | `Cloudy with light rain` |
+| `wind_mph`           | Decimal  | Wind speed                               | `8.0`                    |
+| `precip_probability` | Integer  | Chance of precipitation (0–100)          | `60`                     |
+| `api_raw_json`       | Text     | Optional raw response blob for debugging | `{...}`                  |
+
+---
+
+6. `FerryRoute` & `FerrySchedule` (for coastal/island destinations)
+
+**FerryRoute**
+
+| Field Name           | Type     | Description                                 | Example                        |
+| -------------------- | -------- | ------------------------------------------- | ------------------------------ |
+| `ferry_route_id`     | Integer  | Unique ID for each route                    | `12`                           |
+| `route_name`         | Text     | Name of the route                           | `Seattle – Bainbridge Island`  |
+| `operator_name`      | Text     | Ferry operator                              | `Washington State Ferries`     |
+| `schedule_url`       | URL      | Link to full schedule on official site      | `https://www.wsdot.wa.gov/...` |
+| `schedule_id`        | Integer  | Unique ID for departure entry               | `800`                          |
+| `departure_terminal` | Text     | Departure terminal name                     | `Seattle`                      |
+| `arrival_terminal`   | Text     | Arrival terminal name                       | `Bainbridge`                   |
+| `departure_time`     | DateTime | Next departure time                         | `2025-02-20 10:25`             |
+| `arrival_time`       | DateTime | Estimated arrival                           | `2025-02-20 11:05`             |
+| `is_estimated`       | Boolean  | True if pulled from API / subject to change | `true`                         |
+
+---
+
+## 7. `GuideServiceListing` (monetization: guides and services)
+
+| Field Name      | Type     | Description                                | Example                         |
+| --------------- | -------- | ------------------------------------------ | ------------------------------- |
+| `listing_id`    | Integer  | Unique ID for each guide/service listing   | `450`                           |
+| `guide_user_id` | Integer  | User ID of guide (if they have an account) | `110`                           |
+| `contact_name`  | Text     | Name shown on the listing                  | `Sarah Lee`                     |
+| `contact_email` | Text     | Contact email                              | `sarah@pnwguided.com`           |
+| `service_name`  | Text     | Name of the service/trip                   | `Sunrise Hike to Mount Si`      |
+| `description`   | Text     | Details about what’s included              | `Guided 4-hour sunrise hike...` |
+| `region`        | Text     | Area served                                | `North Bend, WA`                |
+| `price_range`   | Text     | Price or range                             | `$75–$120 per person`           |
+| `website_url`   | URL      | External site (if any)                     | `https://pnwguided.com/mountsi` |
+| `is_approved`   | Boolean  | Approved by site staff                     | `true`                          |
+| `created_at`    | DateTime | Listing created                            | `2025-02-10 14:00`              |
+| `updated_at`    | DateTime | Last updated                               | `2025-02-15 09:30`              |
+
+---
+
+## 8. `Membership` (for “Plus” / exclusive content)
+
+| Field Name      | Type    | Description                     | Example                   |
+| --------------- | ------- | ------------------------------- | ------------------------- |
+| `membership_id` | Integer | Unique ID for membership record | `60`                      |
+| `user_id`       | Integer | Linked to user                  | `101`                     |
+| `level`         | Text    | `free`, `plus`, `staff`         | `plus`                    |
+| `start_date`    | Date    | Membership start                | `2025-02-01`              |
+| `end_date`      | Date    | Membership end (if applicable)  | `2026-02-01`              |
+| `auto_renew`    | Boolean | Whether membership auto-renews  | `false`                   |
+| `notes`         | Text    | Internal notes (optional)       | `Promo code PNW2025 used` |
+
+---
+
+## 9. `LanguageSetting` (multi-language support)
+
+| Field Name      | Type    | Description                                 | Example   |
+| --------------- | ------- | ------------------------------------------- | --------- |
+| `language_code` | Text    | Short code, e.g. `en`, `es`, `fr`           | `en`      |
+| `language_name` | Text    | Human-readable name                         | `English` |
+| `is_default`    | Boolean | Whether this is the site’s default language | `true`    |
+
+---
+
