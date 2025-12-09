@@ -16,15 +16,17 @@
     <p id="alttext" style="font-size:50px"></p>
 
     <ul>
-        <li><a href="mountain.html">Climb the Mountain</a></li>
-        <li><a href="forest.html">Wander the Forest</a></li>
-        <li><a href="falls.html">See the Falls</a></li>
-        <li><a href="ferry.html">Ride the Ferry</a></li>
-        <li><a href="lake.html">Walk Around the Lake</a></li>
-        <li><a href="park.html">Read in the Park</a></li>
-		<li><a href="https://www.google.com">Visit Example Website</a></li>
+        <li><a href="{{ url_for('mountain') }}">Climb the Mountain</a></li>
+        <li><a href="{{ url_for('forest') }}">Wander the Forest</a></li>
+        <li><a href="{{ url_for('falls') }}">See the Falls</a></li>
+        <li><a href="{{ url_for('ferry') }}">Ride the Ferry</a></li>
+        <li><a href="{{ url_for('lake') }}">Walk Around the Lake</a></li>
+        <li><a href="{{ url_for('park') }}">Read in the Park</a></li>		   
     </ul>
-
+    
+    <!-- Link format reference:
+        <li><a href="https://example.com">Example Link</a></li>
+    -->
     <!-- Add User Link -->
     <p>
         <a href="{{ url_for('add_user') }}">Add New User</a>
